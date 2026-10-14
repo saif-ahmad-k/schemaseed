@@ -1,7 +1,7 @@
 export interface LicenseRecord {
   key: string
   instanceId: string | null
-  plan: 'day' | 'year'
+  plan: 'day' | 'month'
   expiresAt: number | null
   email: string | null
 }
@@ -9,7 +9,7 @@ export interface LicenseRecord {
 export type LicenseResult = { ok: true; record: LicenseRecord } | { ok: false; invalid: boolean; error: string }
 
 const DAY_MS = 24 * 60 * 60 * 1000
-const YEAR_MS = 365 * DAY_MS
+const MONTH_MS = 30 * DAY_MS
 
 function asRecord(value: unknown) {
   return value && typeof value === 'object' ? (value as Record<string, unknown>) : null
@@ -59,7 +59,7 @@ export function entitlementFromPayload(payload: unknown, now: number, fallbackKe
     return { ok: true, record: { key, instanceId, plan: 'day', expiresAt: expiresAt ?? now + DAY_MS, email } }
   }
 
-  return { ok: true, record: { key, instanceId, plan: 'year', expiresAt: expiresAt ?? now + YEAR_MS, email } }
+  return { ok: true, record: { key, instanceId, plan: 'month', expiresAt: expiresAt ?? now + MONTH_MS, email } }
 }
 
 export function findLicenseKey(value: unknown, depth = 0): string | null {

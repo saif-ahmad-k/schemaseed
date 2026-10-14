@@ -235,15 +235,15 @@ const dayPass = entitlementFromPayload(
 )
 assert(dayPass.ok && dayPass.record.plan === 'day' && dayPass.record.expiresAt === 1_000 + 86_400_000, 'day pass lasts 24 hours')
 
-const yearPass = entitlementFromPayload(
+const monthPass = entitlementFromPayload(
   {
     valid: true,
     license_key: { status: 'active', key: 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', expires_at: null },
-    meta: { variant_name: '1 year' },
+    meta: { variant_name: '1 month' },
   },
   1_000,
 )
-assert(yearPass.ok && yearPass.record.plan === 'year' && yearPass.record.expiresAt === 1_000 + 365 * 86_400_000, 'year pass lasts 365 days')
+assert(monthPass.ok && monthPass.record.plan === 'month' && monthPass.record.expiresAt === 1_000 + 30 * 86_400_000, 'month pass lasts 30 days')
 
 const ended = entitlementFromPayload(
   {

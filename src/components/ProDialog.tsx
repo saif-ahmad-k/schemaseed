@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DAY_CHECKOUT, YEAR_CHECKOUT, openCheckout } from '../lib/license'
+import { DAY_CHECKOUT, MONTH_CHECKOUT, openCheckout } from '../lib/license'
 import { useApp } from '../store'
 import { Modal } from './Modal'
 
@@ -47,7 +47,7 @@ export function ProDialog() {
     <Modal title="SchemaSeed Pro" onClose={() => setProOpen(false)}>
       <p className="text-sm text-mist">
         Pro is <span className="font-semibold text-foam">$2 for 24 hours</span> or{' '}
-        <span className="font-semibold text-foam">$9 for one year</span>. It unlocks the larger row count, every table and its foreign keys, the extra languages, the expert databases, and chaos mode. After payment, paste the license key from the receipt.
+        <span className="font-semibold text-foam">$7 per month</span>. It unlocks the larger row count, every table and its foreign keys, the extra languages, the expert databases, and chaos mode. After payment, paste the license key from the receipt.
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-lg border border-line bg-panel-2 p-3">
@@ -69,7 +69,7 @@ export function ProDialog() {
       </div>
       {tier === 'pro' ? (
         <div className="mt-4 rounded-md border border-line px-3 py-2 text-sm text-foam">
-          {plan === 'day' ? `24-hour pass is on${ends ? ` until ${ends}` : ''}.` : `One-year pass is on${ends ? ` until ${ends}` : ''}.`}
+          {plan === 'day' ? `24-hour pass is on${ends ? ` until ${ends}` : ''}.` : `Monthly pass is on${ends ? ` until ${ends}` : ''}.`}
           {licenseEmail ? ` ${licenseEmail}` : ''}
           <button type="button" onClick={clearLicense} className="mt-2 block text-xs text-mist hover:text-foam">
             Remove this license from the browser
@@ -80,8 +80,8 @@ export function ProDialog() {
           <button type="button" onClick={() => void buy(DAY_CHECKOUT)} className="flex-1 rounded-md border border-line px-3 py-2 text-sm text-foam hover:bg-white/5">
             24 hours · $2
           </button>
-          <button type="button" onClick={() => void buy(YEAR_CHECKOUT)} className="flex-1 rounded-md bg-amber px-3 py-2 text-sm font-semibold text-[#24180b] hover:bg-[#efb25c]">
-            1 year · $9
+          <button type="button" onClick={() => void buy(MONTH_CHECKOUT)} className="flex-1 rounded-md bg-amber px-3 py-2 text-sm font-semibold text-[#24180b] hover:bg-[#efb25c]">
+            1 month · $7
           </button>
         </div>
       )}

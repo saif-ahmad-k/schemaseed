@@ -1,7 +1,7 @@
 import { entitlementFromPayload, type LicenseRecord, type LicenseResult } from './entitlement'
 
 export const DAY_CHECKOUT = import.meta.env.VITE_LEMON_DAY_URL?.trim() ?? ''
-export const YEAR_CHECKOUT = import.meta.env.VITE_LEMON_YEAR_URL?.trim() ?? ''
+export const MONTH_CHECKOUT = import.meta.env.VITE_LEMON_MONTH_URL?.trim() ?? ''
 
 interface LemonEvent {
   event: string

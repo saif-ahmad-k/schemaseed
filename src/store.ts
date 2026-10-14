@@ -40,7 +40,7 @@ function readLicense(): LicenseRecord | null {
     const parsed = JSON.parse(localStorage.getItem(LICENSE_KEY) ?? 'null') as unknown
     if (!parsed || typeof parsed !== 'object') return null
     const record = parsed as Record<string, unknown>
-    const plan = record.plan === 'lifetime' || record.plan === 'year' ? 'year' : record.plan === 'day' ? 'day' : null
+    const plan = record.plan === 'month' || record.plan === 'year' || record.plan === 'lifetime' ? 'month' : record.plan === 'day' ? 'day' : null
     if (typeof record.key !== 'string' || !plan) return null
     if (record.expiresAt !== null && typeof record.expiresAt !== 'number') return null
     if (record.expiresAt !== null && record.expiresAt <= Date.now()) {
@@ -99,7 +99,7 @@ interface AppState {
   dialect: SqlDialect
   format: ExportFormat
   tier: Tier
-  plan: 'free' | 'day' | 'year'
+  plan: 'free' | 'day' | 'month'
   expiresAt: number | null
   licenseEmail: string | null
   licenseBusy: boolean
@@ -319,7 +319,7 @@ export const useApp = create<AppState>((set, get) => ({
       expiresAt: result.record.expiresAt,
       licenseEmail: result.record.email,
       proOpen: false,
-      notice: result.record.plan === 'day' ? 'Pro is on for 24 hours.' : 'Pro is on for one year.',
+      notice: result.record.plan === 'day' ? 'Pro is on for 24 hours.' : 'Pro is on for one month.',
     })
   },
 
