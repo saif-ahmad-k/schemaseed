@@ -10,7 +10,11 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "check": "vite-node scripts/probe.ts"
+    "check": "vite-node scripts/probe.ts",
+    "postinstall": "node scripts/ci-build.mjs"
+  },
+  "allowScripts": {
+    "esbuild": true
   },
   "dependencies": {
     "@codemirror/lang-sql": "^6.8.0",
