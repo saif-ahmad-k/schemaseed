@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+@media (max-width: 1023px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    overflow: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: #090a0d;
+  color: #e7e1d6;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #e4a24a;
+  color: #1a1206;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a4050 transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.schema-editor,
+.schema-editor .cm-editor,
+.schema-editor .cm-scroller {
+  height: 100%;
+}
+
+.schema-editor .cm-editor {
+  background: transparent;
+}
+
+.schema-editor .cm-gutters {
+  background: transparent;
+  border: none;
+}
+
+.schema-editor .cm-scroller {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
