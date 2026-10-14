@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake data from a CSV header — SchemaSeed</title>
+    <meta name="description" content="Turn a comma-separated header into mock rows. SchemaSeed guesses generators from names such as email, city, price, and created_at." />
+    <link rel="canonical" href="https://schemaseed.com/guides/csv-header-to-fake-data.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Fake data from a CSV header</h1>
+      <p>You do not need a full CREATE TABLE statement to start. A header row is enough when the column names say what the values are.</p>
+      <pre>id, email, full_name, city, created_at</pre>
+      <p>SchemaSeed builds a table from those names and fills each column. <code>email</code> becomes an email address, <code>city</code> becomes a city, and <code>created_at</code> becomes a timestamp. You can change any column’s generator before you export.</p>
+      <p>Use the New button in the app to type the header, preview the table, and optionally save that sample in this browser. The same rows can leave as CSV again, or as JSON, or as SQL inserts once you pick a database.</p>
+      <p><a class="cta" href="/">Start from a header</a></p>
+    </main>
+    <footer>Related: <a href="/guides/mock-data-from-sql.html">CREATE TABLE</a> · <a href="/guides/fake-data-in-other-languages.html">Other languages</a></footer>
+  </body>
+</html>

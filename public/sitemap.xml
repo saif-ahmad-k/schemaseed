@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://schemaseed.com/</loc></url>
+  <url><loc>https://schemaseed.com/guides.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/mock-data-from-sql.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/sql-insert-generator.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/csv-header-to-fake-data.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/postgres-mock-inserts.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/mysql-mock-inserts.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/sql-server-mock-inserts.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/sqlite-mock-inserts.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/clickhouse-mock-inserts.html</loc></url>
+  <url><loc>https://schemaseed.com/guides/fake-data-in-other-languages.html</loc></url>
+</urlset>

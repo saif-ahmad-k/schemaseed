@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClickHouse mock data from DDL — SchemaSeed</title>
+    <meta name="description" content="Paste ClickHouse CREATE TABLE DDL, including ON CLUSTER, LowCardinality, and Nullable types. Export INSERT statements with backticks." />
+    <link rel="canonical" href="https://schemaseed.com/guides/clickhouse-mock-inserts.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>ClickHouse mock data from DDL</h1>
+      <p>ClickHouse DDL often continues after the table name: <code>ON CLUSTER</code>, an engine, <code>PARTITION BY</code>, <code>ORDER BY</code>, and <code>SETTINGS</code>. SchemaSeed skips those clauses and reads the column list.</p>
+      <p>Types such as <code>Int64</code>, <code>UInt16</code>, <code>Float64</code>, and <code>DateTime</code> map to integers, decimals, and timestamps. <code>Nullable(Int64)</code> stays nullable. <code>LowCardinality(Nullable(String))</code> is treated as text that may be empty. A PRIMARY KEY written after the column list, or an ORDER BY used as the key, is picked up as the primary key.</p>
+      <pre>INSERT INTO `events` (`id`, `ts`)
+VALUES (1, '2026-10-14 12:00:00');</pre>
+      <p>ClickHouse is a Pro database. The export uses backticks and writes datetimes with a space.</p>
+      <p><a class="cta" href="/">Paste ClickHouse DDL</a></p>
+    </main>
+    <footer>Related: <a href="/guides/mock-data-from-sql.html">How schemas are read</a> · <a href="/guides/sql-insert-generator.html">Insert syntax</a></footer>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mock data from SQL CREATE TABLE — SchemaSeed</title>
+    <meta name="description" content="Paste a CREATE TABLE statement and get realistic mock rows. SchemaSeed reads column names, SQL types, CHECK lists, and foreign keys in the browser." />
+    <link rel="canonical" href="https://schemaseed.com/guides/mock-data-from-sql.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Mock data from a CREATE TABLE statement</h1>
+      <p>A schema already describes the rows you need. A column named <code>email</code> should be an email. <code>created_at TIMESTAMP</code> should be a timestamp. A CHECK list such as <code>status IN ('draft', 'active')</code> should only use those words.</p>
+      <p>SchemaSeed reads that statement in the browser. Nothing is uploaded. You can export the rows as JSON, CSV, or SQL INSERT statements.</p>
+      <h2>What the parser uses</h2>
+      <ul>
+        <li>The table name and each column name.</li>
+        <li>The SQL type, including wrappers such as Nullable and LowCardinality.</li>
+        <li>NOT NULL, PRIMARY KEY, and CHECK lists.</li>
+        <li>Foreign keys, so a child id comes from a parent row that was just generated.</li>
+      </ul>
+      <pre>CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  city VARCHAR(80),
+  created_at TIMESTAMP
+);</pre>
+      <p>The free tier uses the first table and 50 rows. Pro generates every table, fills foreign keys from the parent rows, and allows up to 10,000 rows.</p>
+      <p><a class="cta" href="/">Paste a CREATE TABLE</a></p>
+    </main>
+    <footer>Related: <a href="/guides/sql-insert-generator.html">SQL insert generator</a> · <a href="/guides/csv-header-to-fake-data.html">CSV headers</a></footer>
+  </body>
+</html>

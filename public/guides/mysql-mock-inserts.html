@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MySQL mock INSERT statements — SchemaSeed</title>
+    <meta name="description" content="Generate MySQL and MariaDB INSERT statements with backticks, 1 and 0 for booleans, and datetime values separated by a space." />
+    <link rel="canonical" href="https://schemaseed.com/guides/mysql-mock-inserts.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>MySQL mock INSERT statements</h1>
+      <p>MySQL and MariaDB reject some PostgreSQL habits. A reserved column name needs backticks, and a boolean column often wants 1 or 0 rather than true or false.</p>
+      <pre>INSERT INTO `orders` (`id`, `order`, `paid`)
+VALUES (1, 'a', 1);</pre>
+      <p>SchemaSeed writes datetimes as <code>YYYY-MM-DD HH:MM:SS</code>, which MySQL accepts without a T. MariaDB uses the same export. TiDB and SingleStore are in the same family and are available with the free databases.</p>
+      <p><a class="cta" href="/">Generate MySQL inserts</a></p>
+    </main>
+    <footer>Related: <a href="/guides/postgres-mock-inserts.html">PostgreSQL</a> · <a href="/guides/sqlite-mock-inserts.html">SQLite</a></footer>
+  </body>
+</html>

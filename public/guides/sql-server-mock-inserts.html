@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL Server mock INSERT statements — SchemaSeed</title>
+    <meta name="description" content="Generate Microsoft SQL Server INSERT statements with bracketed names, N'' Unicode strings, and bit-style 1 and 0 booleans." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sql-server-mock-inserts.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>SQL Server mock INSERT statements</h1>
+      <p>SQL Server uses brackets around identifiers, stores yes/no values as 1 and 0, and expects a national-character prefix when a string should stay Unicode.</p>
+      <pre>INSERT INTO [users] ([id], [full_name], [active])
+VALUES (1, N'Ada Lovelace', 1);</pre>
+      <p>Azure SQL uses the same export. Datetimes are written with a space between the date and the time, which SQL Server accepts. Parent inserts still come before child inserts, so a foreign key in the seed file points at a row in an earlier statement.</p>
+      <p><a class="cta" href="/">Generate SQL Server inserts</a></p>
+    </main>
+    <footer>Related: <a href="/guides/sql-insert-generator.html">How dialects differ</a> · <a href="/guides/sqlite-mock-inserts.html">SQLite</a></footer>
+  </body>
+</html>

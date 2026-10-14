@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQLite mock INSERT statements — SchemaSeed</title>
+    <meta name="description" content="Generate SQLite INSERT statements for a local database. Double-quoted identifiers, true and false booleans, and one file you can run with the sqlite3 shell." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sqlite-mock-inserts.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>SQLite mock INSERT statements</h1>
+      <p>SQLite is the practical choice when the database is a file on disk: a prototype, a desktop app, or a test fixture. SchemaSeed’s SQLite export stays close to PostgreSQL.</p>
+      <pre>INSERT INTO "tasks" ("id", "title", "done")
+VALUES (1, 'Write the seed', true);</pre>
+      <p>Identifiers use double quotes. Booleans are <code>true</code> and <code>false</code>, which SQLite stores as 1 and 0. Download the <code>.sql</code> file and run it with <code>sqlite3 app.db &lt; schemaseed.sql</code> after the CREATE TABLE statements already exist.</p>
+      <p><a class="cta" href="/">Generate SQLite inserts</a></p>
+    </main>
+    <footer>Related: <a href="/guides/postgres-mock-inserts.html">PostgreSQL</a> · <a href="/guides/csv-header-to-fake-data.html">CSV headers</a></footer>
+  </body>
+</html>

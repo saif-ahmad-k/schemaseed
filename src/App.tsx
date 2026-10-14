@@ -93,7 +93,10 @@ export default function App() {
           <OutputPane />
         </div>
       </div>
-      <footer className="flex h-11 shrink-0 items-center justify-end border-t border-line bg-panel px-3">
+      <footer className="flex h-11 shrink-0 items-center justify-between gap-3 border-t border-line bg-panel px-3">
+        <a href="/guides.html" className="text-xs text-mist hover:text-foam">
+          Guides
+        </a>
         <AdSlot />
       </footer>
       {docsOpen && <DocsDialog />}

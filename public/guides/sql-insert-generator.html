@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL INSERT generator from a schema — SchemaSeed</title>
+    <meta name="description" content="Generate SQL INSERT statements that match PostgreSQL, MySQL, SQL Server, SQLite, Oracle, and ClickHouse. Parents are inserted before children." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sql-insert-generator.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Generate SQL INSERT statements from a schema</h1>
+      <p>JSON is easy to share. A database still wants INSERT syntax that matches the engine. SchemaSeed keeps the same rows and changes the SQL around them.</p>
+      <h2>What actually changes</h2>
+      <ul>
+        <li>PostgreSQL and SQLite quote identifiers with double quotes and write booleans as true and false.</li>
+        <li>MySQL and MariaDB use backticks and write booleans as 1 and 0.</li>
+        <li>SQL Server uses brackets, 1 and 0, and an N prefix on ordinary strings.</li>
+        <li>Oracle uses INSERT ALL, TO_DATE for timestamps, and SELECT 1 FROM dual.</li>
+        <li>ClickHouse uses backticks and writes datetimes with a space instead of a T.</li>
+      </ul>
+      <p>When several tables are generated, parent tables are inserted first so foreign keys point at rows that exist. JSON and CSV export the table you are viewing. SQL export writes every generated table.</p>
+      <p><a class="cta" href="/">Generate inserts</a></p>
+    </main>
+    <footer>Related: <a href="/guides/postgres-mock-inserts.html">PostgreSQL</a> · <a href="/guides/mysql-mock-inserts.html">MySQL</a> · <a href="/guides/sql-server-mock-inserts.html">SQL Server</a></footer>
+  </body>
+</html>
