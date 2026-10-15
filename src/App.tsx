@@ -94,9 +94,17 @@ export default function App() {
         </div>
       </div>
       <footer className="flex h-11 shrink-0 items-center justify-between gap-3 border-t border-line bg-panel px-3">
-        <a href="/guides.html" className="text-xs text-mist hover:text-foam">
-          Guides
-        </a>
+        <nav className="flex min-w-0 items-center gap-3 text-xs text-mist">
+          <a href="/random-data-generator.html" className="hover:text-foam">
+            Random data
+          </a>
+          <a href="/test-data-generator.html" className="hover:text-foam">
+            Test data
+          </a>
+          <a href="/guides.html" className="hover:text-foam">
+            Guides
+          </a>
+        </nav>
         <AdSlot />
       </footer>
       {docsOpen && <DocsDialog />}

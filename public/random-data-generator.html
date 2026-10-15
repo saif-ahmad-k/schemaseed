@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Data Generator — JSON, CSV, and SQL | SchemaSeed</title>
+    <meta name="description" content="SchemaSeed is a random data generator that runs in the browser. Paste a CREATE TABLE or CSV header and download up to 10,000 rows as JSON, CSV, or SQL inserts." />
+    <link rel="canonical" href="https://schemaseed.com/random-data-generator.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is SchemaSeed a free random data generator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. One table and 50 rows are free, including JSON, CSV, and SQL. Pro is $2 for 24 hours or $7 for a month, with up to 10,000 rows and every table in the schema."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I have to upload my schema?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The schema and the generated rows stay in your browser."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Random data generator</h1>
+      <p>SchemaSeed builds random test rows from a schema you already have. Paste a <code>CREATE TABLE</code> statement, or a line of CSV column names, and download JSON, CSV, or SQL <code>INSERT</code> statements.</p>
+      <h2>What you get</h2>
+      <ul>
+        <li>Names, emails, cities, prices, dates, and sentences that follow the column name.</li>
+        <li>CHECK lists respected, so a status column only uses the values you wrote.</li>
+        <li>Foreign keys filled from parent rows, with parents inserted first in the SQL file.</li>
+        <li>PostgreSQL, MySQL, SQLite, and SQL Server on the free tier. Oracle, ClickHouse, Snowflake, and BigQuery on Pro.</li>
+      </ul>
+      <h2>How a row is chosen</h2>
+      <p><code>email</code> becomes an email. <code>created_at TIMESTAMP</code> becomes a timestamp. <code>price DECIMAL</code> becomes a money amount. You can override any column before generating. The free limit is the first table and 50 rows. Pro goes to 10,000 rows and keeps every table.</p>
+      <p>Nothing is uploaded. Close the tab and the rows are gone, unless you downloaded them.</p>
+      <p><a class="cta" href="/">Generate random data</a></p>
+      <h2>Questions</h2>
+      <p><strong>Is it free?</strong> One table and 50 rows are free. Pro is $2 for 24 hours or $7 for a month.</p>
+      <p><strong>Does the schema leave the browser?</strong> No. Generation runs locally.</p>
+    </main>
+    <footer>Related: <a href="/fake-data-generator.html">Fake data</a> · <a href="/test-data-generator.html">Test data</a> · <a href="/mockaroo-alternative.html">Compared with Mockaroo</a></footer>
+  </body>
+</html>

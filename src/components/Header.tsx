@@ -22,7 +22,7 @@ export function Header() {
         </span>
         <h1 className="text-sm font-semibold tracking-tight">SchemaSeed</h1>
       </div>
-      <span className="hidden text-xs text-mist sm:inline">Mock rows from a schema, in the browser</span>
+      <span className="hidden text-xs text-mist sm:inline">Random test data from a schema, in the browser</span>
       <div className="ml-auto flex items-center gap-1.5">
         <a
           href="mailto:saifahmedkayani@gmail.com"

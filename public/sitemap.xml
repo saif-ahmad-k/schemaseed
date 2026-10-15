@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://schemaseed.com/</loc></url>
   <url><loc>https://schemaseed.com/guides.html</loc></url>
+  <url><loc>https://schemaseed.com/random-data-generator.html</loc></url>
+  <url><loc>https://schemaseed.com/fake-data-generator.html</loc></url>
+  <url><loc>https://schemaseed.com/test-data-generator.html</loc></url>
+  <url><loc>https://schemaseed.com/mockaroo-alternative.html</loc></url>
   <url><loc>https://schemaseed.com/guides/mock-data-from-sql.html</loc></url>
   <url><loc>https://schemaseed.com/guides/sql-insert-generator.html</loc></url>
   <url><loc>https://schemaseed.com/guides/csv-header-to-fake-data.html</loc></url>

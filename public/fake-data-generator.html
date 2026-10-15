@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake Data Generator — realistic names, emails, and cities | SchemaSeed</title>
+    <meta name="description" content="Generate fake but realistic data from your columns. SchemaSeed fills names, emails, addresses, and sentences in English, Spanish, French, German, Portuguese, and more." />
+    <link rel="canonical" href="https://schemaseed.com/fake-data-generator.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Fake data generator</h1>
+      <p>Fake data is only useful when a person could believe the row. A column named <code>full_name</code> should not be <code>test123</code>. SchemaSeed picks a generator from the column name and the SQL type, then fills values that match.</p>
+      <h2>Columns it recognizes</h2>
+      <ul>
+        <li>People: first name, last name, full name, username, email, phone.</li>
+        <li>Places: address, city, region, country, postal code.</li>
+        <li>Text: title, sentence, paragraph, company, URL, slug.</li>
+        <li>Numbers and time: integer, decimal, price, date, timestamp, boolean.</li>
+      </ul>
+      <p>Language changes the words, not your schema. English, Spanish, French, German, and Portuguese are free. Chinese, Russian, Japanese, and Arabic are Pro. A CHECK constraint such as <code>IN ('draft', 'active')</code> stays in the spellings you wrote. Email addresses stay in ASCII so they remain valid.</p>
+      <p>If you only have a spreadsheet header, paste <code>id, email, full_name, city, created_at</code>. SchemaSeed treats that as the schema.</p>
+      <p><a class="cta" href="/">Make fake rows</a></p>
+    </main>
+    <footer>Related: <a href="/guides/fake-data-in-other-languages.html">Languages</a> · <a href="/random-data-generator.html">Random data generator</a></footer>
+  </body>
+</html>
