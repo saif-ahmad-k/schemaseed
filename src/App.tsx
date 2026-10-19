@@ -95,6 +95,9 @@ export default function App() {
       </div>
       <footer className="flex h-11 shrink-0 items-center justify-between gap-3 border-t border-line bg-panel px-3">
         <nav className="flex min-w-0 items-center gap-3 text-xs text-mist">
+          <a href="/schema-seed.html" className="hover:text-foam">
+            Schema seed
+          </a>
           <a href="/random-data-generator.html" className="hover:text-foam">
             Random data
           </a>
