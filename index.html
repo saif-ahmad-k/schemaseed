@@ -6,14 +6,14 @@
     <title>SchemaSeed — Seed a SQL Schema | JSON, CSV, SQL</title>
     <meta
       name="description"
-      content="Schema seed for SQL. Paste a CREATE TABLE and seed the schema with realistic test rows. Download JSON, CSV, or SQL inserts in the browser."
+      content="Paste a CREATE TABLE in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine."
     />
     <link rel="canonical" href="https://schemaseed.com/" />
     <meta name="robots" content="index,follow" />
     <meta property="og:title" content="SchemaSeed — Seed a SQL Schema | JSON, CSV, SQL" />
     <meta
       property="og:description"
-      content="Schema seed for SQL. Paste a CREATE TABLE and seed the schema with realistic test rows as JSON, CSV, or SQL inserts."
+      content="Paste a CREATE TABLE in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine."
     />
     <meta property="og:url" content="https://schemaseed.com/" />
     <meta property="og:type" content="website" />
@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="SchemaSeed — Seed a SQL Schema | JSON, CSV, SQL" />
     <meta
       name="twitter:description"
-      content="Schema seed for SQL. Download realistic test rows as JSON, CSV, or SQL inserts."
+      content="Paste a CREATE TABLE and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema stays in the browser."
     />
     <meta name="theme-color" content="#090a0d" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -33,7 +33,7 @@
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web",
         "url": "https://schemaseed.com/",
-        "description": "Schema seed for SQL. Paste a CREATE TABLE and seed the schema with realistic test rows as JSON, CSV, or SQL inserts.",
+        "description": "Paste a CREATE TABLE in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine.",
         "offers": [
           { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free: one table and 50 rows" },
           { "@type": "Offer", "price": "2", "priceCurrency": "USD", "description": "Pro for 24 hours" },
@@ -43,7 +43,17 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <h1>SchemaSeed</h1>
+      <p>Paste a CREATE TABLE in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine.</p>
+      <ol>
+        <li>Paste a CREATE TABLE. The Shop sample is customers, products, and orders.</li>
+        <li>Generate a preview. A name becomes a person name, an email becomes an email, and a foreign key uses an id from the parent rows.</li>
+        <li>Download JSON, CSV, or SQL. No account. The schema and the rows stay in this browser.</li>
+      </ol>
+      <p>Generate data from a schema or from DDL. SchemaSeed is a random SQL data generator for the tables you paste.</p>
+      <p><a href="/guides.html">Guides</a> · <a href="/schema-seed.html">Schema seed</a></p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

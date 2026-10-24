@@ -7,7 +7,12 @@ export function DocsDialog() {
   return (
     <Modal title="How SchemaSeed works" onClose={() => setDocsOpen(false)}>
       <div className="space-y-4 text-sm leading-relaxed text-mist">
-        <p>Paste one or more CREATE TABLE statements, or a single CSV header row. The schema stays in this browser.</p>
+        <p>
+          No account. Paste a CREATE TABLE, generate a preview, then download JSON, CSV, or SQL. The schema and the rows stay in this browser. Nothing is uploaded.
+        </p>
+        <p>
+          Realistic means the value follows the column. <span className="font-mono text-xs text-foam">full_name</span> becomes a person name, <span className="font-mono text-xs text-foam">email</span> becomes an email address, <span className="font-mono text-xs text-foam">price</span> becomes a decimal amount, and <span className="font-mono text-xs text-foam">created_at</span> becomes a timestamp. A CHECK list is the only set of values used. A foreign key is an id taken from the parent rows, and the SQL file inserts parents first.
+        </p>
         <p>
           Shop, Blog, and Company are sample schemas. New opens a window where you can type comma-separated column names or a CREATE TABLE statement, then save that sample in this browser.
         </p>

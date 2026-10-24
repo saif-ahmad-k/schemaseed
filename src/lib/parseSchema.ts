@@ -115,6 +115,7 @@ function readStatementTail(sql: string, start: number) {
 
 function extractCreateBlocks(sql: string) {
   const blocks: Array<{ name: string; body: string; tail: string }> = []
+  let unclosed = false
   const matcher = /create\s+(?:temp(?:orary)?\s+)?table\s+(?:if\s+not\s+exists\s+)?/gi
   let match: RegExpExecArray | null
   while ((match = matcher.exec(sql))) {
@@ -135,10 +136,25 @@ function extractCreateBlocks(sql: string) {
       else if (char === ')') depth -= 1
       i += 1
     }
-    blocks.push({ name: ident.name, body: sql.slice(bodyStart, i - 1), tail: readStatementTail(sql, i) })
+    if (depth > 0) unclosed = true
+    const bodyEnd = depth > 0 ? sql.length : i - 1
+    blocks.push({ name: ident.name, body: sql.slice(bodyStart, bodyEnd), tail: readStatementTail(sql, i) })
     matcher.lastIndex = i
   }
-  return blocks
+  return { blocks, unclosed }
+}
+
+function missingTableError(sql: string) {
+  if (/\balter\s+table\b/i.test(sql) && !/create\s+(?:temp(?:orary)?\s+)?table\b/i.test(sql)) {
+    return 'SchemaSeed reads CREATE TABLE. Paste the CREATE TABLE with its columns. ALTER TABLE is not applied.'
+  }
+  if (/\bcreate\s+(?:or\s+replace\s+)?(?:unique\s+)?(?:view|index|schema|database|procedure|function|trigger|sequence)\b/i.test(sql)) {
+    return 'Paste CREATE TABLE statements. Views, indexes, and other CREATE statements are skipped.'
+  }
+  if (/create\s+(?:temp(?:orary)?\s+)?table/i.test(sql)) {
+    return 'That CREATE TABLE has no column list SchemaSeed can read. Put the columns inside parentheses.'
+  }
+  return 'Could not read a CREATE TABLE statement from that SQL. Paste a CREATE TABLE, or a single CSV header row.'
 }
 
 function readSqlType(input: string, start: number) {
@@ -365,17 +381,23 @@ function parseBody(tableName: string, body: string): ParsedBody {
 }
 
 function parseSql(sql: string): ParseResult {
-  const blocks = extractCreateBlocks(sql)
+  const { blocks, unclosed } = extractCreateBlocks(sql)
   if (!blocks.length) {
     return {
       tables: [],
       warnings: [],
-      error: 'Could not read a CREATE TABLE statement from that SQL.',
+      error: missingTableError(sql),
       mode: 'sql',
     }
   }
 
   const warnings: string[] = []
+  if (unclosed) {
+    warnings.push('A CREATE TABLE is missing a closing parenthesis. Columns after the break may be missing.')
+  }
+  if (/\balter\s+table\b/i.test(sql)) {
+    warnings.push('ALTER TABLE is not applied. Put those columns in the CREATE TABLE.')
+  }
   const tables: TableSchema[] = []
   for (const block of blocks) {
     const parsed = parseBody(block.name, block.body)
@@ -403,10 +425,15 @@ function parseSql(sql: string): ParseResult {
     }
   }
 
+  const columnCount = tables.reduce((sum, table) => sum + table.columns.length, 0)
+  if (tables.length > 40 || columnCount > 500) {
+    warnings.push('This schema is large. Generation still runs in this browser and can take a moment.')
+  }
+
   return {
     tables,
     warnings,
-    error: tables.length ? null : 'Could not read a CREATE TABLE statement from that SQL.',
+    error: tables.length ? null : 'CREATE TABLE was found, but no columns could be read. Put each column inside the parentheses.',
     mode: 'sql',
   }
 }
@@ -457,11 +484,14 @@ export function parseSchema(source: string): ParseResult {
   if (!trimmed) return { tables: [], warnings: [], error: null, mode: 'empty' }
   const stripped = stripComments(trimmed)
   if (/create\s+table/i.test(stripped)) return parseSql(stripped)
-  if (/^\s*(select|insert|update|delete|with)\b/i.test(stripped)) {
+  if (/^\s*(select|insert|update|delete|with|alter|drop|create|grant|revoke|truncate|comment)\s+/i.test(stripped)) {
+    const query = /^\s*(select|insert|update|delete|with)\s+/i.test(stripped)
     return {
       tables: [],
       warnings: [],
-      error: 'Paste CREATE TABLE statements, or a single CSV header row.',
+      error: query
+        ? 'That is a query, not a table definition. Paste CREATE TABLE statements, or a single CSV header row.'
+        : missingTableError(stripped),
       mode: 'sql',
     }
   }

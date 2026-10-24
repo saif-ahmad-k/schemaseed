@@ -89,6 +89,18 @@ assert(tableFk.tables[1].columns[1].references?.table === 'users', 'table-level 
 const rejected = parseSchema('SELECT * FROM users;')
 assert(rejected.error?.includes('CREATE TABLE'), 'select statements should be rejected')
 
+const alterOnly = parseSchema('ALTER TABLE users ADD COLUMN email VARCHAR(255);')
+assert(alterOnly.error?.includes('ALTER TABLE'), 'alter table should explain that it is not applied')
+
+const otherCreate = parseSchema('CREATE INDEX users_email ON users (email);')
+assert(otherCreate.error?.includes('CREATE TABLE'), 'create index should ask for a create table')
+
+const unclosed = parseSchema('CREATE TABLE users (\n  id INTEGER PRIMARY KEY,\n  email VARCHAR(255)')
+assert(unclosed.warnings.some((warning) => warning.includes('closing parenthesis')), 'unclosed create should warn')
+
+const altered = parseSchema(`CREATE TABLE users (id INTEGER PRIMARY KEY);\nALTER TABLE users ADD COLUMN note TEXT;`)
+assert(altered.tables.length === 1 && altered.warnings.some((warning) => warning.includes('ALTER TABLE')), 'alter beside create is a warning')
+
 const request: GenerateRequest = {
   id: 1,
   tables: shop.tables,

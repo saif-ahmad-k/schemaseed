@@ -166,12 +166,21 @@ export function OutputPane() {
       </div>
 
       <div className="min-h-0 flex-1">
-        <DataGrid columns={columns} rows={rows} />
+        <DataGrid
+          columns={columns}
+          rows={rows}
+          emptyHint={
+            columns.length
+              ? 'This preview fills when you generate. A name column becomes a person name, an email becomes an email, a CHECK list stays inside its values, and a foreign key uses an id from the parent rows. Then copy or download JSON, CSV, or SQL.'
+              : 'Paste a CREATE TABLE on the left. Shop is a runnable example: customers, products, and orders.'
+          }
+        />
       </div>
 
       <div className="flex min-h-8 flex-wrap items-center gap-x-3 gap-y-1 border-t border-line px-3 py-1.5 text-[11px] text-mist">
         {tier === 'free' && <span>Free uses the first table and {rowCap('free')} rows. SQL is included for the databases without a Pro mark.</span>}
         {tier === 'pro' && <span>Pro · up to {PRO_ROW_CAP.toLocaleString()} rows</span>}
+        {rows.length > 0 && <span>Preview of {rows.length} rows. Copy or download when it looks right.</span>}
         {format === 'sql' && (
           <span>
             {SQL_DIALECTS.find((item) => item.id === dialect)?.label} inserts, parents first.

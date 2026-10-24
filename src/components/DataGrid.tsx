@@ -10,9 +10,11 @@ function display(value: unknown) {
 export function DataGrid({
   columns,
   rows,
+  emptyHint,
 }: {
   columns: string[]
   rows: Record<string, unknown>[]
+  emptyHint?: string
 }) {
   const parentRef = useRef<HTMLDivElement>(null)
   const virtualizer = useVirtualizer({
@@ -43,7 +45,9 @@ export function DataGrid({
           ))}
         </div>
         {rows.length === 0 ? (
-          <div className="px-4 py-10 text-sm text-mist">Generate to fill this grid. The schema is already parsed.</div>
+          <div className="max-w-xl px-4 py-8 text-sm leading-relaxed text-mist">
+            {emptyHint ?? 'Generate to fill this preview. Then copy or download JSON, CSV, or SQL.'}
+          </div>
         ) : (
           <div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
             {virtualizer.getVirtualItems().map((item) => {

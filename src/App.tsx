@@ -8,6 +8,35 @@ import { ProDialog } from './components/ProDialog'
 import { SampleDialog } from './components/SampleDialog'
 import { useApp } from './store'
 
+function FlowBar() {
+  const tables = useApp((state) => state.tables)
+  const generated = useApp((state) => state.generated)
+  const dirty = useApp((state) => state.dirty)
+  const previewReady = generated.length > 0 && !dirty
+  const current = tables.length === 0 ? 1 : previewReady ? 3 : 2
+  const steps = ['Paste a schema', 'Generate a preview', 'Download JSON, CSV, or SQL']
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-line bg-panel px-3 py-1.5 text-[11px]">
+      <ol aria-label="How to use SchemaSeed" className="flex flex-wrap items-center gap-1.5">
+        {steps.map((label, index) => {
+          const number = index + 1
+          const done = number < current || (number === 3 && previewReady)
+          return (
+            <li key={label} className="flex items-center gap-1.5">
+              {index > 0 && <span className="text-mist/50">→</span>}
+              <span className={done || number === current ? 'text-foam' : 'text-mist'} aria-current={number === current ? 'step' : undefined}>
+                {number}. {label}
+              </span>
+            </li>
+          )
+        })}
+      </ol>
+      <p className="text-mist sm:ml-auto">No account. The schema and the rows stay in this browser.</p>
+    </div>
+  )
+}
+
 function useWideScreen() {
   const [wide, setWide] = useState(() => window.matchMedia('(min-width: 1024px)').matches)
   useEffect(() => {
@@ -75,6 +104,7 @@ export default function App() {
   return (
     <div className="flex min-h-dvh flex-col bg-ink text-foam lg:h-dvh lg:min-h-0 lg:overflow-hidden">
       <Header />
+      <FlowBar />
       <div className="flex flex-col lg:min-h-0 lg:flex-1 lg:flex-row lg:overflow-hidden">
         <div
           className="h-[70vh] min-h-[520px] lg:h-full lg:min-h-0 lg:flex-none"
@@ -86,7 +116,21 @@ export default function App() {
           role="separator"
           aria-orientation="vertical"
           aria-label="Resize schema panel"
+          aria-valuemin={320}
+          aria-valuenow={leftWidth}
+          tabIndex={0}
           onPointerDown={onResizeStart}
+          onKeyDown={(event) => {
+            const step = event.shiftKey ? 80 : 24
+            if (event.key === 'ArrowLeft') {
+              event.preventDefault()
+              setLeftWidth((width) => Math.max(320, width - step))
+            }
+            if (event.key === 'ArrowRight') {
+              event.preventDefault()
+              setLeftWidth((width) => Math.min(window.innerWidth - 380, width + step))
+            }
+          }}
           className="hidden w-1.5 shrink-0 cursor-col-resize bg-line hover:bg-amber/50 lg:block"
         />
         <div className="h-[70vh] min-h-[440px] min-w-0 border-t border-line lg:h-full lg:min-h-0 lg:flex-1 lg:border-t-0">

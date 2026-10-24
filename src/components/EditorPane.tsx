@@ -172,7 +172,7 @@ export function EditorPane() {
       </div>
 
       {(parseError || parseWarnings.length > 0) && (
-        <div className="space-y-1 border-t border-line px-3 py-2 text-xs">
+        <div className="space-y-1 border-t border-line px-3 py-2 text-xs" role={parseError ? 'alert' : 'status'}>
           {parseError && <p className="text-danger">{parseError}</p>}
           {parseWarnings.map((warning) => (
             <p key={warning} className="text-mist">
@@ -218,6 +218,7 @@ export function EditorPane() {
           type="button"
           onClick={() => void generate()}
           disabled={generating || tables.length === 0}
+          aria-keyshortcuts="Control+Enter Meta+Enter"
           className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-amber px-3 py-2 text-sm font-semibold text-[#24180b] hover:bg-[#efb25c] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {generating ? <Loader2 size={15} className="animate-spin" /> : <Play size={15} />}
