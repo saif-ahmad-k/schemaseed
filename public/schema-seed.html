@@ -8,6 +8,46 @@
     <link rel="canonical" href="https://schemaseed.com/schema-seed.html" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/seo.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I seed a SQL schema with test data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paste a CREATE TABLE statement into SchemaSeed. It fills the columns and downloads JSON, CSV, or SQL INSERT statements. Parent tables are written before child tables."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do the foreign keys point at real parent rows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Child foreign keys are chosen from the parent rows that were just generated, and the SQL file inserts parents first."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SchemaSeed upload my schema?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Parsing and generation run in the browser. The schema and the rows stay on your machine until you download a file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many rows can SchemaSeed generate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every table is included, up to 10,000 rows. There is no account."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -16,13 +56,14 @@
     </header>
     <main>
       <h1>Schema seed for a SQL database</h1>
-      <p>A schema seed is a set of rows that match tables you already defined. SchemaSeed reads a <code>CREATE TABLE</code> statement, or a CSV header, and fills those columns with realistic test data. You download the seed as JSON, CSV, or SQL <code>INSERT</code> statements.</p>
+      <p>Paste a <code>CREATE TABLE</code> in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine.</p>
+      <p>A schema seed is a set of rows that match tables you already defined. SchemaSeed reads a <code>CREATE TABLE</code> statement, or a CSV header, and fills those columns with realistic test data.</p>
       <h2>How to seed a schema</h2>
       <ol>
         <li>Paste the tables. Include primary keys, <code>NOT NULL</code>, CHECK lists, and foreign keys.</li>
         <li>Check the generator next to each column. <code>email</code> becomes an email. <code>created_at</code> becomes a timestamp. A CHECK list is used as the only allowed values.</li>
         <li>Choose the database. PostgreSQL, MySQL, SQLite, and SQL Server are included. The SQL file inserts parent tables before child tables, so a foreign key points at a row that exists.</li>
-        <li>Download the seed. Free covers the first table and 50 rows. Pro covers every table and up to 10,000 rows.</li>
+        <li>Download the seed. Every table is included, up to 10,000 rows.</li>
       </ol>
       <pre>CREATE TABLE users (
   id INTEGER PRIMARY KEY,
@@ -31,8 +72,13 @@
 );</pre>
       <p>That statement is enough to seed the schema. The rows stay in the browser until you download them. Close the tab and they are gone.</p>
       <p>People also write this as “seed schema.” Both mean the same job here: start from the schema, produce rows that fit it, and load them with SQL or a CSV import.</p>
+      <h2>Questions</h2>
+      <p><strong>How do I seed a SQL schema with test data?</strong> Paste a CREATE TABLE statement. SchemaSeed fills the columns and downloads JSON, CSV, or SQL INSERT statements. Parent tables are written before child tables.</p>
+      <p><strong>Do the foreign keys point at real parent rows?</strong> Yes. Child foreign keys are chosen from the parent rows that were just generated, and the SQL file inserts parents first.</p>
+      <p><strong>Does the schema get uploaded?</strong> No. Parsing and generation run in the browser. The schema and the rows stay on your machine until you download a file.</p>
+      <p><strong>How many rows?</strong> Every table is included, up to 10,000 rows. There is no account.</p>
       <p><a class="cta" href="/">Seed a schema</a></p>
     </main>
-    <footer>Related: <a href="/guides/mock-data-from-sql.html">CREATE TABLE</a> · <a href="/test-data-generator.html">Test data</a> · <a href="/random-data-generator.html">Random data</a></footer>
+    <footer>Related: <a href="/guides/generate-data-from-schema.html">Generate data from a schema</a> · <a href="/guides/generate-data-from-ddl.html">Generate data from DDL</a> · <a href="/random-sql-data-generator.html">Random SQL data</a></footer>
   </body>
 </html>

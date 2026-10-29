@@ -110,7 +110,6 @@ export function OutputPane() {
                 {SQL_DIALECTS.filter((item) => item.group === group).map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.label}
-                    {item.pro && tier === 'free' ? ' · Pro' : ''}
                   </option>
                 ))}
               </optgroup>
@@ -178,8 +177,7 @@ export function OutputPane() {
       </div>
 
       <div className="flex min-h-8 flex-wrap items-center gap-x-3 gap-y-1 border-t border-line px-3 py-1.5 text-[11px] text-mist">
-        {tier === 'free' && <span>Free uses the first table and {rowCap('free')} rows. SQL is included for the databases without a Pro mark.</span>}
-        {tier === 'pro' && <span>Pro · up to {PRO_ROW_CAP.toLocaleString()} rows</span>}
+        <span>Every table, up to {PRO_ROW_CAP.toLocaleString()} rows. No account.</span>
         {rows.length > 0 && <span>Preview of {rows.length} rows. Copy or download when it looks right.</span>}
         {format === 'sql' && (
           <span>

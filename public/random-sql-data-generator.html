@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random SQL data generator — SchemaSeed</title>
+    <meta name="description" content="Random SQL data generator for a schema you paste. SchemaSeed builds INSERT statements from CREATE TABLE DDL, with parent rows before foreign keys." />
+    <link rel="canonical" href="https://schemaseed.com/random-sql-data-generator.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Random SQL data generator</h1>
+      <p>A random SQL data generator is useful when the rows still have to match a real schema. SchemaSeed reads your <code>CREATE TABLE</code> DDL and writes <code>INSERT</code> statements for the database you pick: PostgreSQL, MySQL, SQLite, SQL Server, and, on Pro, Oracle, ClickHouse, and others.</p>
+      <h2>What the SQL file contains</h2>
+      <ul>
+        <li>Random but typed values: emails, names, prices, dates, and the words in a CHECK list.</li>
+        <li>Foreign keys copied from parent rows, with those parents inserted first.</li>
+        <li>Quoting and booleans that match the dialect, so the file can be run after your tables exist.</li>
+      </ul>
+      <p>JSON and CSV are available for the table on screen. The SQL download is one file, <code>schemaseed.sql</code>, and it includes every table, up to 10,000 rows. There is no account.</p>
+      <p>Generation runs in the browser. The DDL is not uploaded.</p>
+      <p><a class="cta" href="/">Generate random SQL data</a></p>
+    </main>
+    <footer>Related: <a href="/guides/generate-data-from-ddl.html">Generate data from DDL</a> · <a href="/guides/generate-data-from-schema.html">Generate data from a schema</a> · <a href="/guides/sql-insert-generator.html">INSERT syntax</a></footer>
+  </body>
+</html>

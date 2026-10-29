@@ -3,7 +3,7 @@ import { findLicenseKey, type LicenseRecord } from './lib/entitlement'
 import { examples, type SchemaExample } from './lib/examples'
 import { parseSchema } from './lib/parseSchema'
 import { redeemLicense, recheckLicense } from './lib/license'
-import { FREE_TABLE_CAP, rowCap } from './lib/plan'
+import { rowCap } from './lib/plan'
 import { runGenerate } from './lib/workerClient'
 import { isDataLocale, isProDialect, isProLocale, isSqlDialect, type DataLocale, type SqlDialect } from './lib/options'
 import { columnKey, type ExportFormat, type GeneratedTable, type GeneratorKind, type ParseResult, type TableSchema, type Tier } from './types'
@@ -70,20 +70,8 @@ function writeLicense(record: LicenseRecord | null) {
 
 const savedLicense = readLicense()
 
-function tablesForRequest(tables: TableSchema[], tier: Tier, overrides: Record<string, GeneratorKind>) {
-  const selected = tier === 'pro' ? tables : tables.slice(0, FREE_TABLE_CAP)
-  if (tier === 'pro') return { tables: selected, overrides }
-  const nextOverrides = { ...overrides }
-  for (const [key, kind] of Object.entries(nextOverrides)) {
-    if (kind === 'fk') delete nextOverrides[key]
-  }
-  return {
-    tables: selected.map((table) => ({
-      ...table,
-      columns: table.columns.map((column) => ({ ...column, references: undefined })),
-    })),
-    overrides: nextOverrides,
-  }
+function tablesForRequest(tables: TableSchema[], overrides: Record<string, GeneratorKind>) {
+  return { tables, overrides }
 }
 
 interface AppState {
@@ -261,17 +249,13 @@ export const useApp = create<AppState>((set, get) => ({
     const next = Math.min(cap, Math.max(1, Math.round(Number.isFinite(value) ? value : 1)))
     set({
       rowCount: next,
-      notice: get().tier === 'free' && value > cap ? `Free tier stops at ${cap} rows.` : null,
+      notice: value > cap ? `Row count stops at ${cap.toLocaleString()}.` : null,
       dirty: get().generated.length > 0,
       editVersion: get().editVersion + 1,
     })
   },
 
   toggleChaos: () => {
-    if (get().tier === 'free') {
-      set({ proOpen: true })
-      return
-    }
     set({
       chaos: !get().chaos,
       dirty: get().generated.length > 0,
@@ -281,10 +265,6 @@ export const useApp = create<AppState>((set, get) => ({
 
   setLocale: (locale) => {
     if (!isDataLocale(locale) || locale === get().locale) return
-    if (isProLocale(locale) && get().tier !== 'pro') {
-      set({ proOpen: true, notice: null })
-      return
-    }
     set({
       locale,
       dirty: get().generated.length > 0,
@@ -294,10 +274,6 @@ export const useApp = create<AppState>((set, get) => ({
 
   setDialect: (dialect) => {
     if (!isSqlDialect(dialect)) return
-    if (isProDialect(dialect) && get().tier !== 'pro') {
-      set({ proOpen: true, notice: null })
-      return
-    }
     set({ dialect })
   },
 
@@ -382,7 +358,7 @@ export const useApp = create<AppState>((set, get) => ({
       return
     }
     const version = state.editVersion
-    const planned = tablesForRequest(state.tables, state.tier, state.overrides)
+    const planned = tablesForRequest(state.tables, state.overrides)
     const rowCount = Math.min(state.rowCount, rowCap(state.tier))
     set({ generating: true, genError: null, notice: null })
     try {
@@ -390,7 +366,7 @@ export const useApp = create<AppState>((set, get) => ({
         tables: planned.tables,
         overrides: planned.overrides,
         rowCount,
-        chaos: state.tier === 'pro' && state.chaos,
+        chaos: state.chaos,
         locale: state.locale,
         seed: Math.floor(Math.random() * 1_000_000_000),
       })

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate data from a schema — SchemaSeed</title>
+    <meta name="description" content="Generate data from a schema in the browser. Paste CREATE TABLE statements and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows." />
+    <link rel="canonical" href="https://schemaseed.com/guides/generate-data-from-schema.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Generate data from a schema</h1>
+      <p>Generate data from a schema you already have, instead of inventing columns by hand. Paste the <code>CREATE TABLE</code> statements. SchemaSeed reads the table names, column names, SQL types, CHECK lists, and foreign keys, then fills the rows.</p>
+      <p>Download JSON, CSV, or SQL <code>INSERT</code> statements. Parent tables are written first, and each child foreign key is taken from those parent rows. The schema stays in the browser.</p>
+      <h2>What you paste</h2>
+      <ul>
+        <li>One table, or several tables that reference each other.</li>
+        <li>A CSV header when you do not have SQL yet. Names such as <code>email</code>, <code>city</code>, and <code>created_at</code> choose the generator.</li>
+      </ul>
+      <p>Every table is included, up to 10,000 rows. There is no account.</p>
+      <p><a class="cta" href="/">Generate data from your schema</a></p>
+    </main>
+    <footer>Related: <a href="/guides/generate-data-from-ddl.html">Generate data from DDL</a> · <a href="/random-sql-data-generator.html">Random SQL data</a> · <a href="/schema-seed.html">Schema seed</a></footer>
+  </body>
+</html>

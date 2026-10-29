@@ -17,13 +17,10 @@ export function DocsDialog() {
           Shop, Blog, and Company are sample schemas. New opens a window where you can type comma-separated column names or a CREATE TABLE statement, then save that sample in this browser.
         </p>
         <p>
-          Language changes names, cities, companies, and sentences. English, Spanish, French, German, and Portuguese are
-          free. Chinese, Russian, Japanese, and Arabic are Pro. Ids, emails, and values locked by a CHECK list stay as
-          written in the schema.
+          Language changes names, cities, companies, and sentences. English, Spanish, French, German, Portuguese, Chinese, Russian, Japanese, and Arabic are included. Ids, emails, and values locked by a CHECK list stay as written in the schema.
         </p>
         <p>
-          Database picks the insert syntax. PostgreSQL, MySQL, MariaDB, SQLite, and SQL Server are free. Oracle,
-          ClickHouse, Snowflake, BigQuery, and the other expert engines are Pro. JSON and CSV stay the same. SQL Server
+          Database picks the insert syntax. PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, Oracle, ClickHouse, Snowflake, BigQuery, and the other engines are included. JSON and CSV stay the same. SQL Server
           and Oracle prefix text with N. Oracle uses INSERT ALL. ClickHouse, Snowflake, and BigQuery write datetimes as{' '}
           <span className="font-mono text-xs text-foam">YYYY-MM-DD HH:MM:SS</span>.
         </p>

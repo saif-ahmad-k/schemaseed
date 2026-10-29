@@ -42,7 +42,6 @@ export function EditorPane() {
   const chaos = useApp((state) => state.chaos)
   const locale = useApp((state) => state.locale)
   const setLocale = useApp((state) => state.setLocale)
-  const tier = useApp((state) => state.tier)
   const generating = useApp((state) => state.generating)
   const setSource = useApp((state) => state.setSource)
   const loadExample = useApp((state) => state.loadExample)
@@ -195,7 +194,6 @@ export function EditorPane() {
             {DATA_LOCALES.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.label}
-                {item.pro && tier === 'free' ? ' · Pro' : ''}
               </option>
             ))}
           </select>
@@ -212,7 +210,6 @@ export function EditorPane() {
         >
           <Zap size={14} />
           Chaos {chaos ? 'on' : 'off'}
-          {tier === 'free' ? ' · Pro' : ''}
         </button>
         <button
           type="button"

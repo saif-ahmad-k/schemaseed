@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate data from DDL — SchemaSeed</title>
+    <meta name="description" content="Generate data from DDL in the browser. Paste CREATE TABLE statements from a SQL script and download JSON, CSV, or INSERT statements that follow the columns." />
+    <link rel="canonical" href="https://schemaseed.com/guides/generate-data-from-ddl.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Generate data from DDL</h1>
+      <p>Generate data from DDL by pasting the <code>CREATE TABLE</code> statements in the script. SchemaSeed reads each table’s columns, types, nullability, CHECK lists, and foreign keys, then builds test rows that fit those definitions.</p>
+      <p>The tool reads table definitions. It does not run the script, create indexes, or apply a later <code>ALTER TABLE</code>. If a column was added in an alter statement, include it in the <code>CREATE TABLE</code> you paste.</p>
+      <pre>CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  total DECIMAL(10, 2)
+);</pre>
+      <p>The SQL download inserts <code>users</code> before <code>orders</code>, and each <code>user_id</code> is one of the generated user ids. You can also download JSON or CSV for the table you are viewing.</p>
+      <p><a class="cta" href="/">Paste DDL</a></p>
+    </main>
+    <footer>Related: <a href="/guides/generate-data-from-schema.html">Generate data from a schema</a> · <a href="/guides/mock-data-from-sql.html">CREATE TABLE</a> · <a href="/random-sql-data-generator.html">Random SQL data</a></footer>
+  </body>
+</html>

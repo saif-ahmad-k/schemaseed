@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://schemaseed.com/sitemap.xml
+
+# https://schemaseed.com/llms.txt

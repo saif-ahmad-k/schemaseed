@@ -2,13 +2,7 @@ import { BookOpen, Mail } from 'lucide-react'
 import { useApp } from '../store'
 
 export function Header() {
-  const tier = useApp((state) => state.tier)
-  const plan = useApp((state) => state.plan)
-  const expiresAt = useApp((state) => state.expiresAt)
   const setDocsOpen = useApp((state) => state.setDocsOpen)
-  const setProOpen = useApp((state) => state.setProOpen)
-  const hoursLeft = expiresAt ? Math.max(1, Math.ceil((expiresAt - Date.now()) / 3_600_000)) : null
-  const proLabel = plan === 'day' && hoursLeft ? `Pro · ${hoursLeft}h` : 'Pro'
 
   return (
     <header className="flex h-12 shrink-0 items-center gap-3 border-b border-line bg-panel px-3">
@@ -38,17 +32,6 @@ export function Header() {
         >
           <BookOpen size={14} />
           Docs
-        </button>
-        <button
-          type="button"
-          onClick={() => setProOpen(true)}
-          className={
-            tier === 'pro'
-              ? 'rounded-md bg-amber px-2.5 py-1.5 text-xs font-semibold text-[#24180b] hover:bg-[#efb25c]'
-              : 'rounded-md border border-line px-2.5 py-1.5 text-xs text-foam hover:bg-white/5'
-          }
-        >
-          {tier === 'pro' ? proLabel : 'Upgrade'}
         </button>
       </div>
     </header>

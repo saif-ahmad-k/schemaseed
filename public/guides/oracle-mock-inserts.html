@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oracle mock INSERT statements — SchemaSeed</title>
+    <meta name="description" content="Generate Oracle mock data as INSERT ALL statements. Timestamps use TO_DATE, identifiers are double-quoted, and the statement ends with SELECT 1 FROM dual." />
+    <link rel="canonical" href="https://schemaseed.com/guides/oracle-mock-inserts.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Oracle mock INSERT statements</h1>
+      <p>Oracle rejects a plain multi-database INSERT file. SchemaSeed writes <code>INSERT ALL</code>, quotes identifiers with double quotes, prefixes strings with N, and formats dates with <code>TO_DATE</code>.</p>
+      <pre>INSERT ALL
+  INTO "users" ("id", "email", "created_at") VALUES (1, N'ada@example.com', TO_DATE('2026-10-14 12:00:00', 'YYYY-MM-DD HH24:MI:SS'))
+SELECT 1 FROM dual;</pre>
+      <p>Booleans are written as 1 and 0. When several tables are generated, parent tables come first so a foreign key points at a row that exists.</p>
+      <p>Paste the <code>CREATE TABLE</code> statements, choose Oracle, and download <code>schemaseed.sql</code>.</p>
+      <p><a class="cta" href="/">Generate Oracle inserts</a></p>
+    </main>
+    <footer>Related: <a href="/guides/sql-insert-generator.html">All dialects</a> · <a href="/guides/postgres-mock-inserts.html">PostgreSQL</a> · <a href="/guides/foreign-key-seed-data.html">Foreign keys</a></footer>
+  </body>
+</html>

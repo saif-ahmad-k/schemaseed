@@ -4,7 +4,6 @@ import { DocsDialog } from './components/DocsDialog'
 import { EditorPane } from './components/EditorPane'
 import { Header } from './components/Header'
 import { OutputPane } from './components/OutputPane'
-import { ProDialog } from './components/ProDialog'
 import { SampleDialog } from './components/SampleDialog'
 import { useApp } from './store'
 
@@ -50,7 +49,6 @@ function useWideScreen() {
 
 export default function App() {
   const docsOpen = useApp((state) => state.docsOpen)
-  const proOpen = useApp((state) => state.proOpen)
   const sampleOpen = useApp((state) => state.sampleOpen)
   const wide = useWideScreen()
   const [leftWidth, setLeftWidth] = useState(560)
@@ -68,17 +66,9 @@ export default function App() {
       params.delete('checkout')
       const query = params.toString()
       window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
-      useApp.getState().setProOpen(true)
-      useApp.setState({ notice: 'Payment completed. Paste the license key from the receipt.' })
     }
-    void useApp.getState().refreshLicense()
-    const timer = window.setInterval(() => {
-      const state = useApp.getState()
-      if (state.tier === 'pro' && state.expiresAt !== null && state.expiresAt <= Date.now()) state.clearLicense()
-    }, 30_000)
     return () => {
       window.removeEventListener('keydown', onKey)
-      window.clearInterval(timer)
     }
   }, [])
 
@@ -155,7 +145,6 @@ export default function App() {
         <AdSlot />
       </footer>
       {docsOpen && <DocsDialog />}
-      {proOpen && <ProDialog />}
       {sampleOpen && <SampleDialog />}
     </div>
   )

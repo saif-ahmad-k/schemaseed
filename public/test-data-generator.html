@@ -19,7 +19,7 @@
       <p>Test data fails when <code>orders.user_id</code> points at a user who was never inserted. SchemaSeed generates the parent table first and only uses those ids in the child table. The SQL file is in the same order, so a foreign key constraint can succeed.</p>
       <h2>What a QA seed usually needs</h2>
       <ul>
-        <li>Enough rows to scroll a UI. Free is 50. Pro is up to 10,000.</li>
+        <li>Enough rows to scroll a UI, up to 10,000.</li>
         <li>Every table in a multi-table schema, not only the first one. That is Pro.</li>
         <li>A dialect the database will actually run: PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, Oracle, or ClickHouse.</li>
         <li>A few bad values. Chaos rewrites about 5% of cells with blanks, nulls where the column allows them, and boundary numbers. Primary keys stay valid.</li>
@@ -27,6 +27,6 @@
       <p>JSON and CSV export the table you are looking at. SQL export writes every generated table into one file named <code>schemaseed.sql</code>.</p>
       <p><a class="cta" href="/">Build a test seed</a></p>
     </main>
-    <footer>Related: <a href="/guides/sql-insert-generator.html">INSERT syntax</a> · <a href="/guides/mock-data-from-sql.html">CREATE TABLE</a></footer>
+    <footer>Related: <a href="/guides/foreign-key-seed-data.html">Foreign keys</a> · <a href="/guides/sql-insert-generator.html">INSERT syntax</a> · <a href="/guides/fake-data-without-uploading.html">Stays in the browser</a></footer>
   </body>
 </html>

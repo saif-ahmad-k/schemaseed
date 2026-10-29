@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SchemaSeed guides — mock data, SQL inserts, and CSV headers</title>
-    <meta name="description" content="Guides for generating mock rows from a CREATE TABLE statement or CSV header, then exporting JSON, CSV, and SQL inserts." />
+    <meta name="description" content="Guides for generating data from a schema or DDL, then exporting JSON, CSV, and random SQL inserts." />
     <link rel="canonical" href="https://schemaseed.com/guides.html" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/seo.css" />
@@ -18,11 +18,16 @@
       <h1>Guides</h1>
       <p>SchemaSeed reads a schema in the browser and fills it with realistic rows. These pages explain the cases people usually need.</p>
       <ul class="card-list">
+        <li><a href="/guides/generate-data-from-schema.html">Generate data from a schema</a><br />Paste the tables you already defined and download rows.</li>
+        <li><a href="/guides/generate-data-from-ddl.html">Generate data from DDL</a><br />Read CREATE TABLE statements from a SQL script.</li>
+        <li><a href="/random-sql-data-generator.html">Random SQL data generator</a><br />INSERT statements that follow the schema and the dialect.</li>
         <li><a href="/schema-seed.html">Schema seed</a><br />Seed a SQL schema from a CREATE TABLE statement.</li>
         <li><a href="/random-data-generator.html">Random data generator</a><br />Generate test rows from a schema and download JSON, CSV, or SQL.</li>
         <li><a href="/fake-data-generator.html">Fake data generator</a><br />Names, emails, cities, and sentences that look real.</li>
         <li><a href="/test-data-generator.html">Test data generator</a><br />Foreign keys, row limits, and messy values for QA.</li>
         <li><a href="/mockaroo-alternative.html">SchemaSeed and Mockaroo</a><br />When to paste a schema here, and what Mockaroo still does.</li>
+        <li><a href="/guides/foreign-key-seed-data.html">SQL seed data with foreign keys</a><br />Parent rows first, then child keys that point at those rows.</li>
+        <li><a href="/guides/fake-data-without-uploading.html">Fake data without uploading the schema</a><br />Parsing and generation stay in the browser.</li>
         <li><a href="/guides/mock-data-from-sql.html">Mock data from a CREATE TABLE statement</a><br />How column names and SQL types become rows.</li>
         <li><a href="/guides/sql-insert-generator.html">Generate SQL INSERT statements</a><br />What changes between PostgreSQL, MySQL, SQL Server, and Oracle.</li>
         <li><a href="/guides/csv-header-to-fake-data.html">Fake data from a CSV header</a><br />Start from column names when you do not have DDL yet.</li>
@@ -31,7 +36,8 @@
         <li><a href="/guides/sql-server-mock-inserts.html">SQL Server mock inserts</a><br />Brackets, N'' strings, and 1/0 booleans.</li>
         <li><a href="/guides/sqlite-mock-inserts.html">SQLite mock inserts</a><br />A small file-friendly dialect for local apps.</li>
         <li><a href="/guides/clickhouse-mock-inserts.html">ClickHouse mock inserts</a><br />Backticks, LowCardinality, and Nullable columns.</li>
-        <li><a href="/guides/fake-data-in-other-languages.html">Fake data in other languages</a><br />Spanish, French, German, Portuguese, and the Pro languages.</li>
+        <li><a href="/guides/oracle-mock-inserts.html">Oracle mock inserts</a><br />INSERT ALL, TO_DATE, and SELECT 1 FROM dual.</li>
+        <li><a href="/guides/fake-data-in-other-languages.html">Fake data in other languages</a><br />Spanish, French, German, Portuguese, Chinese, Russian, Japanese, and Arabic.</li>
       </ul>
       <p><a class="cta" href="/">Open SchemaSeed</a></p>
     </main>

@@ -1,0 +1,43 @@
+# SchemaSeed
+
+> Paste a CREATE TABLE in the browser and download JSON, CSV, or SQL inserts. Foreign keys come from the parent rows. The schema never leaves the machine.
+
+SchemaSeed (https://schemaseed.com) turns a SQL schema, or a CSV header, into realistic test rows. Generation runs locally in the browser. There is no account, and the schema is not uploaded.
+
+Use SchemaSeed when the result has to load: every related table, foreign keys taken from parent rows, and INSERT syntax for a specific database. A short chat example is a different job.
+
+## What it does
+
+- Reads CREATE TABLE statements, including primary keys, NOT NULL, CHECK lists, and foreign keys.
+- Reads a CSV header when there is no DDL yet. Column names such as email, city, price, and created_at choose the generator.
+- Fills child foreign keys from the parent rows just generated. The SQL file inserts parent tables first.
+- Downloads JSON, CSV, or SQL INSERT statements. The SQL file is named schemaseed.sql.
+- Optional chaos rewrites about 5% of cells with blanks, nulls where the column allows them, and boundary numbers. Primary keys stay valid.
+
+## Included
+
+- Every table, up to 10,000 rows, JSON, CSV, and SQL. Foreign keys come from the parent rows. Chaos is included.
+- Languages: English, Spanish, French, German, Portuguese, Chinese, Russian, Japanese, and Arabic.
+- Databases: PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, Azure SQL, CockroachDB, YugabyteDB, TiDB, SingleStore, Oracle, IBM Db2, Firebird, Snowflake, BigQuery, Redshift, Databricks, Azure Synapse, Teradata, Vertica, Cloud Spanner, ClickHouse, DuckDB, Hive, Spark SQL, Trino, Presto, and Athena.
+
+## Pages
+
+- [Open the app](https://schemaseed.com/): paste a schema and download rows.
+- [Generate data from a schema](https://schemaseed.com/guides/generate-data-from-schema.html): turn CREATE TABLE statements into JSON, CSV, or SQL.
+- [Generate data from DDL](https://schemaseed.com/guides/generate-data-from-ddl.html): read the CREATE TABLE statements in a SQL script. Later ALTER TABLE statements are not applied.
+- [Random SQL data generator](https://schemaseed.com/random-sql-data-generator.html): dialect-specific INSERT statements from the schema.
+- [Schema seed](https://schemaseed.com/schema-seed.html): what a schema seed is, and how to make one from CREATE TABLE.
+- [Foreign-key seed data](https://schemaseed.com/guides/foreign-key-seed-data.html): parent rows first, then child keys that point at those rows.
+- [Fake data without uploading](https://schemaseed.com/guides/fake-data-without-uploading.html): the schema stays in the browser.
+- [SQL INSERT generator](https://schemaseed.com/guides/sql-insert-generator.html): PostgreSQL, MySQL, SQL Server, SQLite, Oracle, and ClickHouse syntax.
+- [Oracle mock inserts](https://schemaseed.com/guides/oracle-mock-inserts.html): INSERT ALL, TO_DATE, and SELECT 1 FROM dual.
+- [ClickHouse mock inserts](https://schemaseed.com/guides/clickhouse-mock-inserts.html): DDL with engines, LowCardinality, and Nullable types.
+- [Mock data from SQL](https://schemaseed.com/guides/mock-data-from-sql.html): how column names and types become rows.
+- [Test data generator](https://schemaseed.com/test-data-generator.html): row counts, dialects, and messy values for QA.
+- [Random data generator](https://schemaseed.com/random-data-generator.html): JSON, CSV, and SQL from a schema.
+- [Mockaroo comparison](https://schemaseed.com/mockaroo-alternative.html): when to use SchemaSeed, and when to stay with Mockaroo.
+- [All guides](https://schemaseed.com/guides.html)
+
+## Contact
+
+saifahmedkayani@gmail.com
