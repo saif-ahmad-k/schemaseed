@@ -5,6 +5,7 @@ import { EditorPane } from './components/EditorPane'
 import { Header } from './components/Header'
 import { OutputPane } from './components/OutputPane'
 import { SampleDialog } from './components/SampleDialog'
+import { exampleIdFromQuery } from './lib/examples'
 import { useApp } from './store'
 
 function FlowBar() {
@@ -66,6 +67,13 @@ export default function App() {
       params.delete('checkout')
       const query = params.toString()
       window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
+    }
+    const exampleId = exampleIdFromQuery(params.get('example'))
+    const seedRaw = params.get('seed')
+    if (seedRaw && /^\d{1,9}$/.test(seedRaw)) useApp.getState().setPinnedSeed(Number(seedRaw))
+    if (exampleId) {
+      useApp.getState().loadExample(exampleId)
+      void useApp.getState().generate()
     }
     return () => {
       window.removeEventListener('keydown', onKey)

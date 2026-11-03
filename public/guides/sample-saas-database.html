@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample SaaS database — organizations and members</title>
+    <meta name="description" content="A sample SaaS SQL database with organizations and members. Each member belongs to one organization. Plans and roles stay inside the CHECK lists." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sample-saas-database.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Sample SaaS database</h1>
+      <p>A small company schema is an organization and the people in it. The member row has to name an organization that exists. This sample generates organizations first, then fills <code>organization_id</code> from those ids.</p>
+      <pre>CREATE TABLE organizations (
+  id INTEGER PRIMARY KEY,
+  company VARCHAR(160) NOT NULL,
+  country VARCHAR(80),
+  plan VARCHAR(20) CHECK (plan IN ('free', 'pro', 'enterprise')),
+  created_at TIMESTAMP
+);
+
+CREATE TABLE members (
+  id INTEGER PRIMARY KEY,
+  organization_id INTEGER NOT NULL REFERENCES organizations(id),
+  email VARCHAR(255) NOT NULL,
+  role VARCHAR(20) CHECK (role IN ('owner', 'admin', 'member')),
+  joined_at TIMESTAMP
+);</pre>
+      <p>Company names and countries follow the column. <code>plan</code> is only free, pro, or enterprise. <code>role</code> is only owner, admin, or member. The SQL file inserts organizations before members.</p>
+      <p><a class="cta" href="/?example=saas">Open the company sample</a></p>
+      <p>A store schema is on the <a href="/guides/sample-ecommerce-database.html">ecommerce sample</a>. Authors and posts are on the <a href="/guides/sample-blog-database.html">blog sample</a>. Paste your own tables when you need subscriptions, invoices, or a different shape.</p>
+    </main>
+    <footer>Related: <a href="/guides/foreign-key-seed-data.html">Foreign keys</a> · <a href="/test-data-generator.html">Test data</a></footer>
+  </body>
+</html>

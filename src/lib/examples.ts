@@ -6,6 +6,19 @@ export interface SchemaExample {
   custom?: boolean
 }
 
+const exampleAliases: Record<string, string> = {
+  ecommerce: 'ecommerce',
+  shop: 'ecommerce',
+  blog: 'blog',
+  saas: 'saas',
+  company: 'saas',
+}
+
+export function exampleIdFromQuery(value: string | null): string | null {
+  if (!value) return null
+  return exampleAliases[value.trim().toLowerCase()] ?? null
+}
+
 export const examples: SchemaExample[] = [
   {
     id: 'ecommerce',

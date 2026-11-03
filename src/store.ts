@@ -98,6 +98,7 @@ interface AppState {
   genError: string | null
   generating: boolean
   seed: number | null
+  pinnedSeed: number | null
   elapsedMs: number | null
   dirty: boolean
   editVersion: number
@@ -115,6 +116,7 @@ interface AppState {
   setOverride: (table: string, column: string, kind: GeneratorKind) => void
   clearOverrides: () => void
   setRowCount: (value: number) => void
+  setPinnedSeed: (value: number | null) => void
   toggleChaos: () => void
   setLocale: (locale: DataLocale) => void
   setDialect: (dialect: SqlDialect) => void
@@ -172,6 +174,7 @@ export const useApp = create<AppState>((set, get) => ({
   genError: null,
   generating: false,
   seed: null,
+  pinnedSeed: null,
   elapsedMs: null,
   dirty: false,
   editVersion: 0,
@@ -242,6 +245,15 @@ export const useApp = create<AppState>((set, get) => ({
       dirty: get().generated.length > 0,
       editVersion: get().editVersion + 1,
     })
+  },
+
+  setPinnedSeed: (value) => {
+    if (value === null || !Number.isFinite(value)) {
+      set({ pinnedSeed: null, dirty: get().generated.length > 0 })
+      return
+    }
+    const next = Math.min(999_999_999, Math.max(0, Math.floor(value)))
+    set({ pinnedSeed: next, dirty: get().generated.length > 0 })
   },
 
   setRowCount: (value) => {
@@ -368,7 +380,7 @@ export const useApp = create<AppState>((set, get) => ({
         rowCount,
         chaos: state.chaos,
         locale: state.locale,
-        seed: Math.floor(Math.random() * 1_000_000_000),
+        seed: state.pinnedSeed ?? Math.floor(Math.random() * 1_000_000_000),
       })
       const latest = get()
       const active = result.tables.some((table) => table.name === latest.activeTable)

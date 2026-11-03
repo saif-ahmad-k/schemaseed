@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample blog database — authors, posts, and comments</title>
+    <meta name="description" content="A sample blog SQL database with authors, posts, and comments. Post and comment foreign keys use ids from the parent rows. Generate the inserts in the browser." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sample-blog-database.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Sample blog database</h1>
+      <p>A blog needs an author, a post that belongs to that author, and a comment that belongs to that post. This sample uses UUID primary keys. Each <code>author_id</code> and <code>post_id</code> is copied from a parent row, so the inserts can load with the foreign keys turned on.</p>
+      <pre>CREATE TABLE authors (
+  id UUID PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  full_name VARCHAR(120),
+  bio TEXT
+);
+
+CREATE TABLE posts (
+  id UUID PRIMARY KEY,
+  author_id UUID NOT NULL REFERENCES authors(id),
+  title VARCHAR(200) NOT NULL,
+  slug VARCHAR(200),
+  body TEXT,
+  published BOOLEAN,
+  created_at TIMESTAMP
+);
+
+CREATE TABLE comments (
+  id UUID PRIMARY KEY,
+  post_id UUID NOT NULL REFERENCES posts(id),
+  author_name VARCHAR(120),
+  body TEXT,
+  created_at TIMESTAMP
+);</pre>
+      <p>Author names and emails look like people. Titles, slugs, and comment text are sentences. <code>published</code> is true or false. The SQL file inserts authors, then posts, then comments.</p>
+      <p><a class="cta" href="/?example=blog">Open the blog sample</a></p>
+      <p>For a store, use the <a href="/guides/sample-ecommerce-database.html">ecommerce sample</a>. For organizations and members, use the <a href="/guides/sample-saas-database.html">company sample</a>.</p>
+    </main>
+    <footer>Related: <a href="/guides/foreign-key-seed-data.html">Foreign keys</a> · <a href="/guides/sql-insert-generator.html">INSERT syntax</a></footer>
+  </body>
+</html>

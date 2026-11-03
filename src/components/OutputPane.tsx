@@ -22,6 +22,8 @@ export function OutputPane() {
   const setRowCount = useApp((state) => state.setRowCount)
   const tier = useApp((state) => state.tier)
   const seed = useApp((state) => state.seed)
+  const pinnedSeed = useApp((state) => state.pinnedSeed)
+  const setPinnedSeed = useApp((state) => state.setPinnedSeed)
   const elapsedMs = useApp((state) => state.elapsedMs)
   const dirty = useApp((state) => state.dirty)
   const notice = useApp((state) => state.notice)
@@ -115,6 +117,22 @@ export function OutputPane() {
               </optgroup>
             ))}
           </select>
+        </label>
+        <label className="flex items-center gap-1.5 text-xs text-mist" title="The same seed generates the same rows. Leave it empty for a new set.">
+          Seed
+          <input
+            aria-label="Seed"
+            type="number"
+            min={0}
+            max={999999999}
+            placeholder="any"
+            value={pinnedSeed ?? ''}
+            onChange={(event) => {
+              const raw = event.target.value
+              setPinnedSeed(raw === '' ? null : event.target.valueAsNumber)
+            }}
+            className="h-7 w-24 rounded-md border border-line bg-panel-2 px-2 font-mono text-xs text-foam"
+          />
         </label>
         <label className="flex items-center gap-1.5 text-xs text-mist">
           Rows

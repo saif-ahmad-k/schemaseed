@@ -13,6 +13,8 @@ Use SchemaSeed when the result has to load: every related table, foreign keys ta
 - Fills child foreign keys from the parent rows just generated. The SQL file inserts parent tables first.
 - Downloads JSON, CSV, or SQL INSERT statements. The SQL file is named schemaseed.sql.
 - Optional chaos rewrites about 5% of cells with blanks, nulls where the column allows them, and boundary numbers. Primary keys stay valid.
+- A seed number repeats the same rows. Leave it empty for a new set.
+- Shop, Blog, and Company are built-in samples: an ecommerce store, a blog, and a company with members. Open them with ?example=ecommerce, ?example=blog, or ?example=saas.
 
 ## Included
 
@@ -23,6 +25,10 @@ Use SchemaSeed when the result has to load: every related table, foreign keys ta
 ## Pages
 
 - [Open the app](https://schemaseed.com/): paste a schema and download rows.
+- [Sample ecommerce database](https://schemaseed.com/guides/sample-ecommerce-database.html): customers, products, and orders.
+- [Sample blog database](https://schemaseed.com/guides/sample-blog-database.html): authors, posts, and comments.
+- [Sample SaaS database](https://schemaseed.com/guides/sample-saas-database.html): organizations and members.
+- [Reproducible SQL test data](https://schemaseed.com/guides/reproducible-sql-test-data.html): the same seed generates the same rows.
 - [Generate data from a schema](https://schemaseed.com/guides/generate-data-from-schema.html): turn CREATE TABLE statements into JSON, CSV, or SQL.
 - [Generate data from DDL](https://schemaseed.com/guides/generate-data-from-ddl.html): read the CREATE TABLE statements in a SQL script. Later ALTER TABLE statements are not applied.
 - [Random SQL data generator](https://schemaseed.com/random-sql-data-generator.html): dialect-specific INSERT statements from the schema.

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://schemaseed.com/</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://schemaseed.com/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://schemaseed.com/guides/sample-ecommerce-database.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://schemaseed.com/guides/sample-blog-database.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://schemaseed.com/guides/sample-saas-database.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://schemaseed.com/guides/reproducible-sql-test-data.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://schemaseed.com/pro-demo.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://schemaseed.com/schema-seed.html</loc></url>
   <url><loc>https://schemaseed.com/guides/generate-data-from-schema.html</loc></url>

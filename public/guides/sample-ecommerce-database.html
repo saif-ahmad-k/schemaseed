@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample ecommerce database — customers, products, and orders</title>
+    <meta name="description" content="A sample ecommerce SQL database with customers, products, and orders. Foreign keys point at real parent rows. Generate JSON, CSV, or SQL inserts in the browser." />
+    <link rel="canonical" href="https://schemaseed.com/guides/sample-ecommerce-database.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Sample ecommerce database</h1>
+      <p>A store schema needs three tables that fit together: a customer, a product, and an order that points at both. Random integers in <code>user_id</code> fail as soon as the database checks the foreign key. This sample generates the parents first and copies those ids into the order.</p>
+      <pre>CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  full_name VARCHAR(120),
+  city VARCHAR(80),
+  created_at TIMESTAMP
+);
+
+CREATE TABLE products (
+  id INTEGER PRIMARY KEY,
+  title VARCHAR(160) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  status VARCHAR(20) NOT NULL CHECK (status IN ('draft', 'active', 'archived'))
+);
+
+CREATE TABLE orders (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users (id),
+  product_id INTEGER REFERENCES products (id),
+  total DECIMAL(10, 2),
+  note TEXT,
+  created_at TIMESTAMP
+);</pre>
+      <p>Names, emails, cities, and prices follow the column. <code>status</code> stays inside draft, active, and archived. Each order uses a customer id and a product id from the rows just generated. The SQL file inserts <code>users</code> and <code>products</code> before <code>orders</code>.</p>
+      <p>The schema stays in the browser. There is no account. You can download JSON, CSV, or SQL, up to 10,000 rows per table.</p>
+      <p><a class="cta" href="/?example=ecommerce">Open the shop sample</a></p>
+      <h2>Other ready schemas</h2>
+      <p>The same generator fills a <a href="/guides/sample-blog-database.html">blog</a> and a <a href="/guides/sample-saas-database.html">company</a>. Paste your own CREATE TABLE when the sample is only a starting point. To repeat the same rows later, set a <a href="/guides/reproducible-sql-test-data.html">seed</a>.</p>
+    </main>
+    <footer>Related: <a href="/guides/foreign-key-seed-data.html">Foreign keys</a> · <a href="/test-data-generator.html">Test data</a> · <a href="/schema-seed.html">Schema seed</a></footer>
+  </body>
+</html>

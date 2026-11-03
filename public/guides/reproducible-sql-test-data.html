@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reproducible SQL test data — same seed, same rows</title>
+    <meta name="description" content="Generate the same SQL test rows again by setting a seed. SchemaSeed keeps the seed in the browser, with the schema, and repeats the preview and the download." />
+    <link rel="canonical" href="https://schemaseed.com/guides/reproducible-sql-test-data.html" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/seo.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">SchemaSeed</a>
+      <a href="/guides.html">Guides</a>
+    </header>
+    <main>
+      <h1>Reproducible SQL test data</h1>
+      <p>A failing test is hard to share when the next run invents different customers. Type a seed before you generate. The same schema, the same row count, the same language, and the same seed produce the same rows. Leave Seed empty when you want a new set.</p>
+      <p>The number is shown under the preview after a run. Put that number back into Seed, or open a link that already includes it, and generate again. Nothing is stored on a server. The schema and the seed stay in this browser.</p>
+      <p>Foreign keys still come from the parent rows of that run, so the repeated file loads the same way. Chaos, if you turn it on, is part of the run: the same seed repeats the same messy cells.</p>
+      <p><a class="cta" href="/?example=ecommerce&amp;seed=42">Open the shop sample with seed 42</a></p>
+      <p>Start from a <a href="/guides/sample-ecommerce-database.html">store</a>, a <a href="/guides/sample-blog-database.html">blog</a>, or a <a href="/guides/sample-saas-database.html">company</a>, or paste your own CREATE TABLE and set the seed yourself.</p>
+    </main>
+    <footer>Related: <a href="/test-data-generator.html">Test data</a> · <a href="/guides/foreign-key-seed-data.html">Foreign keys</a></footer>
+  </body>
+</html>

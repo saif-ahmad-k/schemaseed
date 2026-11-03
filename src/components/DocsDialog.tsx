@@ -14,7 +14,7 @@ export function DocsDialog() {
           Realistic means the value follows the column. <span className="font-mono text-xs text-foam">full_name</span> becomes a person name, <span className="font-mono text-xs text-foam">email</span> becomes an email address, <span className="font-mono text-xs text-foam">price</span> becomes a decimal amount, and <span className="font-mono text-xs text-foam">created_at</span> becomes a timestamp. A CHECK list is the only set of values used. A foreign key is an id taken from the parent rows, and the SQL file inserts parents first.
         </p>
         <p>
-          Shop, Blog, and Company are sample schemas. New opens a window where you can type comma-separated column names or a CREATE TABLE statement, then save that sample in this browser.
+          Shop, Blog, and Company are sample schemas. New opens a window where you can type comma-separated column names or a CREATE TABLE statement, then save that sample in this browser. A seed number repeats the same rows. Leave Seed empty for a new set each time.
         </p>
         <p>
           Language changes names, cities, companies, and sentences. English, Spanish, French, German, Portuguese, Chinese, Russian, Japanese, and Arabic are included. Ids, emails, and values locked by a CHECK list stay as written in the schema.
